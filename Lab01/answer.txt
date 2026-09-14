@@ -1,0 +1,2 @@
+The value printed for roundedCost is 19, meaning it is truncated rather than rounded to the nearest integer, which would be 20 in this case. 
+This is because when we explicitly cast a double to an int in Java, the compiler simply chops off the entire fractional part.
