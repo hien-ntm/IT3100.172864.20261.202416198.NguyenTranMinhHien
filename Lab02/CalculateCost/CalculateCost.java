@@ -5,23 +5,31 @@ public class CalculateCost {
         Scanner scanner = new Scanner(System.in);
         
         int n = scanner.nextInt();
+        scanner.nextLine();
+        String[] title = new String[n];
         double[] cost = new double[n];
-        double minCost = Double.MAX_VALUE;
-        double maxCost = 0.0;
+        int minCostIdx = 0;
+        int maxCostIdx = 0;
         double totalCost = 0.0;
         double limit = 20.0;
         double discount = 0.9;
 
         for (int i = 0; i < n; i++) {
+            title[i] = scanner.nextLine();
             cost[i] = scanner.nextDouble();
-            minCost = Math.min(minCost, cost[i]);
-            maxCost = Math.max(maxCost, cost[i]);
+            scanner.nextLine();
+            if (cost[i] < cost[minCostIdx]) {
+                minCostIdx = i;
+            }
+            if (cost[i] > cost[maxCostIdx]) {
+                maxCostIdx = i;
+            }
             totalCost += (cost[i] > limit) ? discount * cost[i] : cost[i];
         }
 
-        System.out.println("min cost = " + minCost);
-        System.out.println("max cost = " + maxCost);
-        System.out.println("total cost = " + totalCost);
+        System.out.println("min: " + title[minCostIdx] + " (" + cost[minCostIdx] + ")");
+        System.out.println("max:" + title[maxCostIdx] + " (" + cost[maxCostIdx] + ")");
+        System.out.println("total cost after discount = " + totalCost);
 
         scanner.close();
     }
